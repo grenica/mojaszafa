@@ -57,12 +57,19 @@
         </ul>
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="colours" role="tabpanel" aria-labelledby="colours-tab">
-            {!! Form::open(array('route'=>'settings.account.store','files' => true)) !!}
+            @if ($category->colours->isEmpty())
+              {{-- <p>pusty</p> --}}
+              {!! Form::open(array('route'=>'admin.cat_color.store')) !!}
+            @else
+              {{-- <p>sa przypisane kolory</p> --}}
+              {!! Form::model($category, ['route' => ['admin.cat_color.update', $category->getRouteKey()], 'method' => 'put']) !!}
+            @endif
+
               @foreach ($colours as $color)
                 <div class="form-check form-check-inline">
-
-                  {!! Form::label('col',$color->name)  !!}
-                  {!! Form::checkbox('col',$color->id,null,['class'=>'form-control flat-red'])  !!}
+                  {!! Form::hidden('catID',$category->id) !!}
+                  {!! Form::label('color',$color->name)  !!}
+                  {!! Form::checkbox('color[]',$color->id,null,['class'=>'form-control flat-red'])  !!}
                 {{-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="{{$color->id}}">
                 <label class="form-check-label" for="inlineCheckbox1">{{ $color->name }}</label> --}}
               </div>
@@ -95,7 +102,7 @@
       {!! Form::open(array('route'=>'admin.categories.addsub')) !!}
       <div class="modal-body">
         <div class="form-group">
-              {!! Form::label('parent_id','Jest kolor')  !!}
+              {{-- {!! Form::label('parent_id','Jest kolor')  !!} --}}
               {!! Form::hidden('parent_id',$category->id,['class'=>'form-control flat-red'])  !!}
         </div>
 

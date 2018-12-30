@@ -20,7 +20,7 @@ class Category extends Model
      //
      return $this->belongsTo(self::class,'parent_id');
    }
-   public function colour()
+   public function colours()
    {
      return $this->belongsToMany(Colour::class);
    }

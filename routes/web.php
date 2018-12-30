@@ -34,6 +34,7 @@ Route::group(['prefix'=>'admin'], function () {
     Route::resource('/condition', 'Admin\ConditionController',['as' =>'admin']);
     Route::resource('/size', 'Admin\SizeController',['as' =>'admin']);
     Route::resource('/categories', 'Admin\CategoryController',['as' =>'admin']);
+    Route::resource('/cat_color', 'Admin\CategoryColorController',['as' =>'admin'])->except(['show','index']);
     Route::post('/addsub', 'Admin\CategoryController@addsub')->name('admin.categories.addsub');
 
 });

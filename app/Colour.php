@@ -10,7 +10,7 @@ class Colour extends Model
 
   protected $dates = ['deleted_at'];
 
-  public function colour()
+  public function categories()
   {
     return $this->belongsToMany(Category::class);
   }
