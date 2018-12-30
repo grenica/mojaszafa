@@ -24,6 +24,9 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "admin-lte": "^3.0.0-alpha.2",
+        "bootstrap-colorpicker": "^3.0.3",
+        "imagemin": "^6.0.0",
         "npm": "^6.5.0",
         "npm-reinstall": "^1.2.1"
     }

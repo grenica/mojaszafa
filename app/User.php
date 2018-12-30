@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role',
     ];
 
     /**
@@ -27,4 +27,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isAdmin()
+    {
+      if($this->role == 'admin') {
+        return true;
+      }
+      return false;
+    }
+
+    // public function region() {
+    //   return $this -> hasMany(Region::class);
+    // }
+    public function address() {
+      return $this -> hasOne(Address::class);
+    }
+
+
 }

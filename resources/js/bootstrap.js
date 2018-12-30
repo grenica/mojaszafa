@@ -12,6 +12,9 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('admin-lte');
+    require('admin-lte/plugins/iCheck/icheck.min.js');
+    
 } catch (e) {}
 
 /**
