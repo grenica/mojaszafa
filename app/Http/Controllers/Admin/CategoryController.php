@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use App\Colour;
+//use App\Colour;
+use App\Size;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -74,8 +75,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-      $colours = Colour::all();
-        return view('admin.category.show')->with('category',$category)->with('colours',$colours);
+      //$colours = Colour::all();
+      $sizes = Size::all();
+        return view('admin.category.show')->with('category',$category)->with('sizes',$sizes);
     }
 
     /**
@@ -98,10 +100,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+    //  $s = empty($request->isSize) ? false : true ;
+    //  dd($s);
       $category->name = $request->name;
-      $category->isActive = $request->isActive;
-      $category->isSize = $request->isSize;
-      $category->isColor = $request->isColor;
+      $category->isActive = empty($request->isActive) ? false : true;
+      $category->isSize =empty($request->isSize) ? false : true ; //$request->isSize;
+      $category->isColor = empty($request->isColor) ? false : true;
       $category->slug = str_slug($request->name,'_');
       $category->save();
       $request->session()->flash('success', 'Zmodyfikawano rekord!');

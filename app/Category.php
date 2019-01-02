@@ -11,7 +11,6 @@ class Category extends Model
   protected $dates = ['deleted_at'];
 
   public function children() {
-   //
    return $this->hasMany(self::class, 'parent_id','id');
  }
 
@@ -20,8 +19,19 @@ class Category extends Model
      //
      return $this->belongsTo(self::class,'parent_id');
    }
-   public function colours()
+   // public function colours()
+   // {
+   //   // wiele do wiele
+   //   return $this->belongsToMany(Colour::class);
+   // }
+   public function sizes()
    {
-     return $this->belongsToMany(Colour::class);
+     // wiele do wiele
+     return $this->belongsToMany(Size::class);
+   }
+
+   public function items()
+   {
+     return $this->hasMany(Item::class);
    }
 }

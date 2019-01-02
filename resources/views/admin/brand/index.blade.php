@@ -30,12 +30,14 @@
             <tr>
               <th>ID</th>
               <th>Nazwa</th>
+              <th>Aktywny</th>
               <th>Opcje</th>
             </tr>
             @foreach ($brands as $brand)
               <tr>
                 <td>{{ $brand->id }}</td>
                 <td>{{ $brand->name }}</td>
+                <td>{{ $brand->isActive }}</td>
 
                 <td>
                   <div class="float-right">

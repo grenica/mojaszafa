@@ -87,6 +87,7 @@
 
 @section('script')
   <!-- bootstrap color picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.1/js/bootstrap-colorpicker.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     $(".my-colorpicker").colorpicker()

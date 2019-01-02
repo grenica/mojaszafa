@@ -5,11 +5,11 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          {{ $colour->name }}
+          {{ $brand->name }}
         </div>
         <div class="card-body">
-          {!! Form::model($colour, ['route' => ['admin.color.update', $colour->getRouteKey()], 'method' => 'put','files'=>true]) !!}
-              @include('admin.color.form')
+          {!! Form::model($brand, ['route' => ['admin.brand.update', $brand->getRouteKey()], 'method' => 'put','files'=>true]) !!}
+              @include('admin.brand.form')
 
               <div class="form-group">
                   {!! Form::button('Zapisz',['type'=>'submit','class'=>'btn btn-primary'])  !!}
