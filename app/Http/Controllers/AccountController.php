@@ -14,6 +14,7 @@ class AccountController extends Controller
   /**
    * Create a new controller instance.
    *
+   *
    * @return void
    */
   public function __construct()
@@ -119,7 +120,7 @@ class AccountController extends Controller
     {
       $addr = Address::find($id);
       $addr->desc = $request->desc;
-      
+
       if($request->hasFile('image')){
          $file = $request->file('image');
          $filename = 'user-'. $user->id.'-' . time() . '.' . $file->getClientOriginalExtension();
