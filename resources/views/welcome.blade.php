@@ -11,15 +11,18 @@
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
+
                         </div>
                     @endif
-
-
+                    <h2>to test kontroller HOME</h2>
+                    <mod></mod>
+                    {{-- <example-component></example-component> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('nav')

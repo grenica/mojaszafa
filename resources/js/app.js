@@ -7,7 +7,8 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from "vue";
+//window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,13 +22,19 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('mod', require('./components/mod.vue').default);
+//Vue.component('test', require('./components/test.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//import mod from "./components/mod.vue";
 
+// const app = new Vue({
+//     el: '#app'
+// });
 const app = new Vue({
     el: '#app'
 });

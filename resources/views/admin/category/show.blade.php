@@ -27,7 +27,6 @@
                     {!! Form::model($cat,array('route'=>['admin.categories.destroy',$cat->id],'method'=>'DELETE','class'=>'d-inline')) !!}
                                      {!! Form::button('<i class="fas fa-trash-alt" aria-hidden="false"></i>',['type'=>'submit','class'=>'btn btn-sm btn-outline-dark'])  !!}
                                     {!! Form::close() !!}
-
                   </div>
                 </td>
               </tr>
@@ -46,33 +45,61 @@
       <div class="collapse" id="mycollapse">
           <div class="card">
             <div class="card-body">
-              @if ($category->sizes->isEmpty())
 
                 {!! Form::open(array('route'=>'admin.cat_size.store')) !!}
                 {!! Form::hidden('catID',$category->id) !!}
-                 @foreach ($sizes as $size)
-                  <div class="form-check form-check-inline">
-                    {{-- {!! Form::hidden('catID',$category->id) !!} --}}
-                    {!! Form::label('size',$size->name)  !!}
-                    {!! Form::checkbox('size[]',$size->id,null,['class'=>'form-control flat-red'])  !!}
-                </div>
-                @endforeach
-              @else
-                  <p>sa pozycje w size</p>
-                {!! Form::model($category, ['route' => ['admin.cat_size.update', $category->getRouteKey()], 'method' => 'put']) !!}
-                <div class="form-check form-check-inline">
+                @if ($category->sizes->isEmpty())
                   @foreach ($sizes as $size)
-                    <span>{{ $size->id }}</span>
-                    {!! Form::label('size',$size->name)  !!}
-                    {!! Form::checkbox('size[]',$size->id,null,['class'=>'form-control flat-red'])  !!}
+                    <div class="form-check form-check-inline">
+                      {{-- {!! Form::hidden('catID',$category->id) !!} --}}
+                      {!! Form::label('size',$size->name)  !!}
+                      {!! Form::checkbox('size[]',$size->id,null,['class'=>'form-control flat-red'])  !!}
+                    </div>
                   @endforeach
+                @else
+                  {{-- <p>sa jeszcze pozycje do przypisania</p> --}}
+                <div class="form-check form-check-inline">
+                  @foreach ($newsizes as $ns)
+                    {!! Form::label('size',$ns->name)  !!}
+                    {!! Form::checkbox('size[]',$ns->id,null,['class'=>'form-control flat-red'])  !!}
+                  @endforeach
+                  {{-- @foreach ($category->sizes as $cat)
+                      <p class='text-danger'>{{ $cat->id }}</p>
+                  @endforeach --}}
+
+                  {{-- @foreach ($sizes as $size)
+                    <span>{{ $size->id }} </span> --}}
+                    {{-- {{$category->sizes}} --}}
+                    {{-- {!! Form::label('size',$size->name)  !!} --}}
+                    {{-- @if (in_array($size->id,$a))
+                      <p>{{$size->id}}</p>
+                    @endif --}}
+                    {{-- @foreach ($category->sizes as $cat)
+
+                      @if ($cat->id = 5 )
+                        <p class='text-danger'>{{ $cat->id }}</p>
+
+
+                      @endif
+                      @break
+
+                    @endforeach --}}
+                    {{-- {!! Form::checkbox('size[]',$size->id,null,['class'=>'form-control flat-red'])  !!} --}}
+                    {{-- {!! Form::checkbox('size[]',null,0 ,['class'=>'form-control flat-red'])  !!} --}}
+                  {{-- @endforeach --}}
               </div>
               @endif
+                @if ($newsizes->isEmpty())
+                  <div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fa fa-warning"></i> Alert!</h5>
+                  Niestety nie ma już pozycji rozmiarów do przypisania do tej kategorii
+                </div>
+                @else
+                    {{ Form::submit('Zapisz',['class'=>'btn btn-primary']) }}
+                @endif
 
-
-              {{ Form::submit('Zapisz',['class'=>'btn btn-primary']) }}
               {!! Form::close() !!}
-
             </div>
           </div>
     </div>

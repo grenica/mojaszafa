@@ -75,9 +75,18 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-      //$colours = Colour::all();
+
       $sizes = Size::all();
-        return view('admin.category.show')->with('category',$category)->with('sizes',$sizes);
+    //pobieram tablicę tylko id dla kategorii, które są przypisane do size
+    // są w tabeli (category_size)
+    $sub = $category->sizes->pluck('id')->toArray();
+    //dd($sub);
+    // szukam w size tych id które nie są jeszcze przypisane (wolne)
+    $newsizes = Size::whereNotIn('id',$sub)->get();
+
+      return view('admin.category.show',compact('category','newsizes','sizes'));
+
+      //  return view('admin.category.show',compact('category','newsizes','sizes'));//->with('category',$category)->with('sizes',$sizes);
     }
 
     /**

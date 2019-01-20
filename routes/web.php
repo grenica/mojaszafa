@@ -18,7 +18,13 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/testcss', function() {
+  return view('testcss');
+});
 Route::resource('/items', 'ItemController');
+Route::get('/category_ajax2/{id}', 'ItemController@ajax2')->name('category_ajax2');
+Route::get('/category_modal', 'ItemController@showmodal')->name('category_modal');
+Route::get('/category_ajax', 'ItemController@ajax')->name('category_ajax');
 
 Route::group(['prefix'=>'settings'], function () {
     Route::resource('/address', 'AddressController',['as' =>'settings'])->except(['show']);
